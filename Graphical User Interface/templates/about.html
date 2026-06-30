@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}Tentang Aplikasi{% endblock %}
+
+{% block content %}
+<div class="pg pg--about">
+
+  <!-- Header -->
+  <div class="hdr">
+    <h1>Tentang Aplikasi</h1>
+    <p>Sistem klasifikasi spesies merak berbasis citra bulu menggunakan deep learning.</p>
+  </div>
+
+  <!-- About card -->
+  <div class="about-card">
+    <img src="{{ url_for('static', filename='img/logos/logo-navbar.png') }}"
+         alt="PavoLens Logo"
+         class="about-logo"
+         onerror="this.style.display='none'">
+    <div>
+      <h2>Apa itu PavoLens?</h2>
+      <p>PavoLens adalah aplikasi berbasis web yang membantu mengidentifikasi spesies merak secara otomatis dari citra bulunya. Dikembangkan menggunakan model deep learning ResNet-50 yang dilatih khusus pada dataset citra bulu merak dari tiga spesies berbeda.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Spesies yang dapat diidentifikasi -->
+  <span class="sec-label">Spesies yang Dapat Diidentifikasi</span>
+  <div class="sp-grid">
+
+    <div class="card3 sp-card">
+      <img src="{{ url_for('static', filename='img/merak_biru.jpg') }}"
+           class="sp-img" alt="Merak Biru"
+           onerror="this.style.background='#e0f5ec';this.style.height='80px';">
+      <div class="sp-body">
+        <p class="sp-name">Merak Biru</p>
+        <p class="sp-sci">Pavo cristatus</p>
+        <span class="badge badge-lc">LC · Least Concern</span>
+        <p class="sp-desc">Merak India dengan bulu biru metalik yang mencolok. Spesies paling umum dan menjadi simbol nasional India.</p>
+      </div>
+    </div>
+
+    <div class="card3 sp-card">
+      <img src="{{ url_for('static', filename='img/merak_hijau.jpg') }}"
+           class="sp-img" alt="Merak Hijau"
+           onerror="this.style.background='#e0f5ec';this.style.height='80px';">
+      <div class="sp-body">
+        <p class="sp-name">Merak Hijau</p>
+        <p class="sp-sci">Pavo muticus</p>
+        <span class="badge badge-en">EN · Endangered</span>
+        <p class="sp-desc">Merak asli Asia Tenggara termasuk Indonesia. Dilindungi penuh oleh undang-undang, populasi terus menurun.</p>
+      </div>
+    </div>
+
+    <div class="card3 sp-card">
+      <img src="{{ url_for('static', filename='img/merak_ungu.jpg') }}"
+           class="sp-img" alt="Merak Ungu"
+           onerror="this.style.background='#e0f5ec';this.style.height='80px';">
+      <div class="sp-body">
+        <p class="sp-name">Merak Ungu</p>
+        <p class="sp-sci">Pavo cristatus mut.</p>
+        <span class="badge badge-lc">Color Mutation · Captivity</span>
+        <p class="sp-desc">Mutasi warna genetik dari Merak Biru yang menghasilkan semburat ungu pada bulu. Hampir seluruhnya hidup dalam penangkaran.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Cara kerja sistem -->
+  <span class="sec-label">Cara Kerja Sistem</span>
+  <div class="steps-grid" style="margin-bottom:2.5rem;">
+
+    <div class="card3 step-card">
+      <div class="step-num">1</div>
+      <p class="step-title">Unggah Gambar</p>
+      <p class="step-desc">User mengunggah citra bulu merak dalam format JPG atau PNG.</p>
+    </div>
+
+    <div class="card3 step-card">
+      <div class="step-num">2</div>
+      <p class="step-title">Preprocessing</p>
+      <p class="step-desc">Gambar diubah ke 224×224 piksel dan dinormalisasi sesuai ResNet-50.</p>
+    </div>
+
+    <div class="card3 step-card">
+      <div class="step-num">3</div>
+      <p class="step-title">Inferensi Model</p>
+      <p class="step-desc">ResNet-50 menganalisis pola visual bulu dan menghasilkan skor tiap kelas.</p>
+    </div>
+
+    <div class="card3 step-card">
+      <div class="step-num">4</div>
+      <p class="step-title">Tampilkan Hasil</p>
+      <p class="step-desc">Spesies terprediksi ditampilkan beserta confidence score dan info konservasi.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Teknologi yang digunakan -->
+  <span class="sec-label">Teknologi yang Digunakan</span>
+  <div class="tech-grid">
+
+    <div class="card3">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#eaf3de;">⚙️</div>
+        <span class="tech-title">Backend</span>
+      </div>
+      <div class="tech-chips">
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Python</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Flask</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">TensorFlow + Keras</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">NumPy</span></div>
+      </div>
+    </div>
+
+    <div class="card3">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#e6f1fb;">🖥️</div>
+        <span class="tech-title">Frontend</span>
+      </div>
+      <div class="tech-chips">
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">HTML5</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">CSS3</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Bootstrap 5</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">JavaScript Vanilla</span></div>
+      </div>
+    </div>
+
+    <div class="card3">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#fbeaf0;">🧠</div>
+        <span class="tech-title">AI Model</span>
+      </div>
+      <div class="tech-chips">
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">ResNet-50 + SK Optimized</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Format .keras</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Input 224×224 piksel</span></div>
+        <div class="tech-chip"><div class="tc-dot"></div><span class="tc-name">Prediksi Spesies Merak</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

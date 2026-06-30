@@ -1,0 +1,422 @@
+{% extends "base.html" %}
+{% block title %}Histori Klasifikasi{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="pg pg--about">
+
+  <div class="hdr">
+    <h1>Histori Klasifikasi</h1>
+    <p>Riwayat seluruh klasifikasi spesies merak yang telah dilakukan.</p>
+  </div>
+
+  {% if records %}
+
+  <!-- Info bar: jumlah total + tombol hapus -->
+  <div class="hist-bar">
+    <span class="hist-count">
+      <i class="bi bi-layers me-1"></i>
+      <strong>{{ records|length }}</strong> hasil klasifikasi tersimpan
+    </span>
+    <form method="POST" action="{{ url_for('history_clear') }}"
+          onsubmit="return confirm('Hapus semua histori? Tindakan ini tidak bisa dibatalkan.');">
+      <button type="submit" class="hist-clear-btn">
+        <i class="bi bi-trash3 me-1"></i>Hapus Semua
+      </button>
+    </form>
+  </div>
+
+  <!-- Grafik analitik -->
+  <span class="sec-label">Analitik</span>
+  <div class="charts-row">
+
+    <div class="chart-card">
+      <div class="chart-card-title">Distribusi Spesies</div>
+      <div class="donut-wrap">
+        <div class="donut-canvas-wrap">
+          <canvas id="donutChart"></canvas>
+          <div class="donut-center">
+            <span class="donut-center-num">{{ records|length }}</span>
+            <span class="donut-center-label">Total</span>
+          </div>
+        </div>
+        <div class="donut-legend" id="donutLegend"></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-title">Tren Confidence (%)</div>
+      <canvas id="lineChart" style="max-height:165px;"></canvas>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Ringkasan per spesies -->
+  <span class="sec-label">Ringkasan per Spesies</span>
+  {% set biru_count  = records | selectattr("label", "equalto", "Biru")  | list | length %}
+  {% set hijau_count = records | selectattr("label", "equalto", "Hijau") | list | length %}
+  {% set ungu_count  = records | selectattr("label", "equalto", "Ungu")  | list | length %}
+  <div class="hist-summary-grid">
+
+    <div class="card3 hist-sum-card">
+      <div class="hist-sum-num" style="color:var(--clr-biru);">{{ biru_count }}</div>
+      <div class="hist-sum-label">
+        <span class="species-dot species-dot--biru" style="margin-right:5px;"></span>Merak Biru
+      </div>
+      <div class="hist-sum-bar">
+        <div class="hist-sum-fill" style="width:{{ (biru_count / records|length * 100)|round|int }}%;background:var(--clr-biru);"></div>
+      </div>
+      <div class="hist-sum-pct">{{ (biru_count / records|length * 100)|round|int }}%</div>
+    </div>
+
+    <div class="card3 hist-sum-card">
+      <div class="hist-sum-num" style="color:var(--clr-hijau);">{{ hijau_count }}</div>
+      <div class="hist-sum-label">
+        <span class="species-dot species-dot--hijau" style="margin-right:5px;"></span>Merak Hijau
+      </div>
+      <div class="hist-sum-bar">
+        <div class="hist-sum-fill" style="width:{{ (hijau_count / records|length * 100)|round|int }}%;background:var(--clr-hijau);"></div>
+      </div>
+      <div class="hist-sum-pct">{{ (hijau_count / records|length * 100)|round|int }}%</div>
+    </div>
+
+    <div class="card3 hist-sum-card">
+      <div class="hist-sum-num" style="color:var(--clr-ungu);">{{ ungu_count }}</div>
+      <div class="hist-sum-label">
+        <span class="species-dot species-dot--ungu" style="margin-right:5px;"></span>Merak Ungu
+      </div>
+      <div class="hist-sum-bar">
+        <div class="hist-sum-fill" style="width:{{ (ungu_count / records|length * 100)|round|int }}%;background:var(--clr-ungu);"></div>
+      </div>
+      <div class="hist-sum-pct">{{ (ungu_count / records|length * 100)|round|int }}%</div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Toolbar: filter + sort + export -->
+  <div class="hist-toolbar">
+    <span class="hist-toolbar-label">Riwayat Klasifikasi</span>
+
+    <div class="hist-select-wrap">
+      <i class="bi bi-funnel hist-select-icon"></i>
+      <select class="hist-select" id="filterSpecies" onchange="applyFilters()">
+        <option value="all">Semua Spesies</option>
+        <option value="Biru">Merak Biru</option>
+        <option value="Hijau">Merak Hijau</option>
+        <option value="Ungu">Merak Ungu</option>
+      </select>
+    </div>
+
+    <div class="hist-select-wrap">
+      <i class="bi bi-sort-down hist-select-icon"></i>
+      <select class="hist-select" id="sortBy" onchange="applyFilters()">
+        <option value="newest">Terbaru</option>
+        <option value="oldest">Terlama</option>
+        <option value="conf_high">Confidence Tertinggi</option>
+        <option value="conf_low">Confidence Terendah</option>
+      </select>
+    </div>
+
+    <div class="hist-toolbar-sep"></div>
+
+    <button class="hist-export-btn" onclick="exportCSV()">
+      <i class="bi bi-download"></i> Export CSV
+    </button>
+  </div>
+
+  <div class="hist-result-count" id="resultCount"></div>
+
+  <!-- Daftar kartu histori -->
+  <div class="hist-list" id="histList">
+    {% for rec in records %}
+    <div class="card3 hist-card"
+         data-label="{{ rec.label }}"
+         data-conf="{{ rec.confidence }}"
+         data-ts="{{ rec.timestamp }}">
+
+      <div class="hist-thumb-wrap">
+        <img src="{{ url_for('static', filename=rec.image_file) }}"
+             alt="Hasil {{ rec.label }}"
+             class="hist-thumb"
+             onerror="this.parentElement.innerHTML='<div class=\'hist-thumb-ph\'>🖼️</div>'">
+      </div>
+
+      <div class="hist-info">
+        <div class="hist-info-top">
+          <div>
+            <span class="species-dot
+              {% if rec.label == 'Hijau' %}species-dot--hijau
+              {% elif rec.label == 'Ungu' %}species-dot--ungu
+              {% else %}species-dot--biru{% endif %}"
+              style="margin-right:6px;"></span>
+            <span class="hist-label">{{ rec.label }}</span>
+            <span class="hist-conf">{{ rec.confidence }}%</span>
+          </div>
+          <span class="hist-time-badge">
+            <i class="bi bi-calendar3 me-1"></i>{{ rec.date }}
+            <span class="hist-time-sep">·</span>
+            <i class="bi bi-clock me-1"></i>{{ rec.time }}
+          </span>
+        </div>
+
+        <div class="hist-pb-wrap">
+          <div class="hist-pb">
+            <div class="hist-pf"
+                 style="width:{{ rec.confidence }}%;
+                        background:{% if rec.label == 'Hijau' %}var(--clr-hijau){% elif rec.label == 'Ungu' %}var(--clr-ungu){% else %}var(--clr-biru){% endif %};">
+            </div>
+          </div>
+          <span class="hist-conf-label">Keyakinan</span>
+        </div>
+
+        <div class="hist-probs">
+          {% for p in rec.probs %}
+          <span class="hist-prob-chip {% if p.label == rec.label %}active{% endif %}">
+            {{ p.label }}: <strong>{{ p.score }}%</strong>
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="hist-meta">
+        <span class="hist-id">#{{ rec.id }}</span>
+        {% if rec.elapsed %}
+        <span class="hist-elapsed">
+          <i class="bi bi-lightning-charge"></i> {{ rec.elapsed }}s
+        </span>
+        {% endif %}
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="hist-no-filter" id="noFilterResult" style="display:none;">
+    Tidak ada data untuk filter yang dipilih.
+  </div>
+
+  {% else %}
+  <div class="hist-empty">
+    <div class="hist-empty-icon">🕊️</div>
+    <p class="hist-empty-title">Belum ada histori klasifikasi</p>
+    <p class="hist-empty-sub">Lakukan klasifikasi pertama kamu, hasilnya akan muncul di sini secara otomatis.</p>
+    <a href="{{ url_for('classify') }}" class="rbtn" style="margin-top:1rem;display:inline-block;">
+      Mulai Klasifikasi
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+
+{% if records %}
+<script>
+/* Data mentah dari server */
+const RAW_RECORDS = {{ records | tojson }};
+
+/* Warna per spesies — sinkron dengan CSS variable */
+const CLR = {
+  Biru:  { main: '#0d7a8a', light: 'rgba(13,122,138,0.15)'  },
+  Hijau: { main: '#1D9E75', light: 'rgba(29,158,117,0.15)'  },
+  Ungu:  { main: '#7c3aed', light: 'rgba(124,58,237,0.15)'  },
+};
+
+/* ── Donut Chart ── */
+function buildDonut() {
+  const counts = { Biru: 0, Hijau: 0, Ungu: 0 };
+  RAW_RECORDS.forEach(r => { if (r.label in counts) counts[r.label]++; });
+  const total = RAW_RECORDS.length;
+
+  new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Merak Biru', 'Merak Hijau', 'Merak Ungu'],
+      datasets: [{
+        data: [counts.Biru, counts.Hijau, counts.Ungu],
+        backgroundColor: [CLR.Biru.main, CLR.Hijau.main, CLR.Ungu.main],
+        borderWidth: 0,
+        hoverOffset: 6,
+      }]
+    },
+    options: {
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw / total * 100)}%)`
+          }
+        }
+      },
+      animation: { animateRotate: true, duration: 800 }
+    }
+  });
+
+  /* Legend manual */
+  const entries = [
+    { label: 'Merak Biru',  count: counts.Biru,  color: CLR.Biru.main  },
+    { label: 'Merak Hijau', count: counts.Hijau, color: CLR.Hijau.main },
+    { label: 'Merak Ungu',  count: counts.Ungu,  color: CLR.Ungu.main  },
+  ];
+  document.getElementById('donutLegend').innerHTML = entries.map(e => `
+    <div class="donut-leg-item">
+      <div class="donut-leg-left">
+        <div class="donut-leg-dot" style="background:${e.color}"></div>
+        <span>${e.label}</span>
+      </div>
+      <span class="donut-leg-pct">${total ? Math.round(e.count / total * 100) : 0}%</span>
+    </div>
+  `).join('');
+}
+
+/* ── Line Chart ── */
+function buildLine() {
+  /* Urutkan dari lama ke baru supaya tren mengalir kiri → kanan */
+  const sorted = [...RAW_RECORDS].sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+
+  const ctx  = document.getElementById('lineChart').getContext('2d');
+  const grad = ctx.createLinearGradient(0, 0, 0, 165);
+  grad.addColorStop(0, 'rgba(29,158,117,0.20)');
+  grad.addColorStop(1, 'rgba(29,158,117,0.01)');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: sorted.map((_, i) => `#${i + 1}`),
+      datasets: [{
+        label: 'Confidence (%)',
+        data:  sorted.map(r => r.confidence),
+        borderColor: '#1D9E75',
+        backgroundColor: grad,
+        pointBackgroundColor: sorted.map(r => CLR[r.label]?.main || '#1D9E75'),
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        tension: 0.38,
+        fill: true,
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: items => {
+              const r = sorted[items[0].dataIndex];
+              return `${r.label} · ${r.date} ${r.time}`;
+            },
+            label: item => ` Confidence: ${item.raw}%`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 10 }, color: '#9ca3af' }
+        },
+        y: {
+          min: 0, max: 100,
+          grid: { color: '#f0f0f0' },
+          ticks: { font: { size: 10 }, color: '#9ca3af', callback: v => v + '%' }
+        }
+      },
+      animation: { duration: 800 }
+    }
+  });
+}
+
+/* ── Animasi progress bar kartu histori ── */
+function animateBars() {
+  document.querySelectorAll('.hist-pf:not([data-animated])').forEach(el => {
+    const target = el.style.width;
+    el.style.width = '0';
+    el.setAttribute('data-animated', '1');
+    requestAnimationFrame(() => requestAnimationFrame(() => { el.style.width = target; }));
+  });
+}
+
+/* ── Filter + Sort ── */
+function applyFilters() {
+  const species = document.getElementById('filterSpecies').value;
+  const sort    = document.getElementById('sortBy').value;
+  const list    = document.getElementById('histList');
+  const noRes   = document.getElementById('noFilterResult');
+  const countEl = document.getElementById('resultCount');
+
+  const cards = Array.from(list.querySelectorAll('.hist-card'));
+
+  /* Tampilkan / sembunyikan berdasarkan filter spesies */
+  cards.forEach(c => {
+    c.style.display = (species === 'all' || c.dataset.label === species) ? '' : 'none';
+  });
+
+  let visible = cards.filter(c => c.style.display !== 'none');
+
+  /* Urutkan */
+  visible.sort((a, b) => {
+    if (sort === 'newest')    return b.dataset.ts.localeCompare(a.dataset.ts);
+    if (sort === 'oldest')    return a.dataset.ts.localeCompare(b.dataset.ts);
+    if (sort === 'conf_high') return parseFloat(b.dataset.conf) - parseFloat(a.dataset.conf);
+    if (sort === 'conf_low')  return parseFloat(a.dataset.conf) - parseFloat(b.dataset.conf);
+    return 0;
+  });
+  visible.forEach(c => list.appendChild(c));
+
+  /* State kosong */
+  const empty = visible.length === 0;
+  noRes.style.display = empty ? 'block' : 'none';
+  list.style.display  = empty ? 'none'  : '';
+
+  /* Counter — hanya tampil jika ada filter aktif */
+  const isDefault = species === 'all' && sort === 'newest';
+  countEl.innerHTML = isDefault
+    ? ''
+    : `Menampilkan <strong>${visible.length}</strong> dari ${cards.length} data`;
+
+  setTimeout(animateBars, 80);
+}
+
+/* ── Export CSV ── */
+function exportCSV() {
+  const species  = document.getElementById('filterSpecies').value;
+  const filtered = species === 'all'
+    ? RAW_RECORDS
+    : RAW_RECORDS.filter(r => r.label === species);
+
+  if (filtered.length === 0) { alert('Tidak ada data untuk diexport.'); return; }
+
+  const headers = ['ID','Tanggal','Waktu','Spesies','Confidence (%)','Inferensi (s)','Biru (%)','Hijau (%)','Ungu (%)'];
+  const rows = filtered.map(r => {
+    const pm = {};
+    r.probs.forEach(p => { pm[p.label] = p.score; });
+    return [r.id, r.date, r.time, r.label, r.confidence, r.elapsed ?? '',
+            pm['Biru'] ?? '', pm['Hijau'] ?? '', pm['Ungu'] ?? ''].join(',');
+  });
+
+  const blob = new Blob([[headers.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const a    = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: `pavolens_histori${species !== 'all' ? '_' + species.toLowerCase() : ''}.csv`
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+/* ── Init ── */
+window.addEventListener('load', () => {
+  buildDonut();
+  buildLine();
+  setTimeout(animateBars, 120);
+});
+</script>
+{% endif %}
+
+{% endblock %}

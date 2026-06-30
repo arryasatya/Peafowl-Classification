@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Beranda{% endblock %}
+
+{% block content %}
+<style>
+  /* URL gambar hero di-set di sini karena bergantung pada url_for Jinja */
+  .hero-bg {
+    background-image: url("{{ url_for('static', filename='img/hero_merak.jpg') }}");
+  }
+</style>
+
+<div class="hero-fullbleed">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">PavoLens · Klasifikasi Spesies Merak</p>
+    <h1 class="hero-headline">Kenali Spesies<br>Merak dari Bulunya</h1>
+    <p class="hero-sub">
+      Upload foto bulu merak, dan biarkan PavoLens mengidentifikasi spesiesnya dalam hitungan detik.
+    </p>
+    <div class="hero-cta">
+      <a href="{{ url_for('classify') }}" class="btn-primary-cta">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M3 7.5h9M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Mulai Klasifikasi
+      </a>
+      <a href="{{ url_for('about') }}" class="btn-ghost-cta">
+        Pelajari Lebih Lanjut
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-label">Spesies yang dikenali</span>
+    <div class="hero-badge-pills">
+      <span class="hero-pill">Merak Biru</span>
+      <span class="hero-pill">Merak Hijau</span>
+      <span class="hero-pill">Merak Ungu</span>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

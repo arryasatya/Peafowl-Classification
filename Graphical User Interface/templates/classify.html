@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% block title %}Klasifikasi{% endblock %}
+
+{% block content %}
+
+
+{# Data spesies dipakai oleh JS untuk mengisi nama ilmiah dan info card #}
+<script>
+const SPECIES_INFO = {
+  "Biru": {
+    name: "Merak Biru", sci: "Pavo cristatus",
+    status: "LC", status_label: "Least Concern", badge_class: "badge-lc",
+    habitat: "Asia Selatan", panjang: "195–225 cm", populasi: "~100.000 ekor",
+    desc: "Merak Biru adalah spesies merak paling umum dan mudah dikenali dengan bulu ekor jantan berwarna biru-hijau metalik yang memukau. Spesies ini tersebar luas di anak benua India dan Sri Lanka.",
+    warning: null,
+    img: "/static/img/results_biru.jpg"
+  },
+  "Hijau": {
+    name: "Merak Hijau", sci: "Pavo muticus",
+    status: "EN", status_label: "Endangered", badge_class: "badge-en",
+    habitat: "Asia Tenggara", panjang: "200–300 cm", populasi: "<30.000 ekor",
+    desc: "Merak Hijau merupakan spesies endemik Asia Tenggara termasuk Indonesia. Populasinya terus menurun drastis akibat perburuan liar dan hilangnya habitat. Di Indonesia, spesies ini dilindungi penuh oleh undang-undang.",
+    warning: "Spesies ini berstatus Endangered (Terancam Punah). Jika Anda menemukan merak hijau di alam liar atau diduga diperdagangkan secara ilegal, segera laporkan ke BKSDA setempat atau hubungi hotline KLHK: 021-5720227.",
+    img: "/static/img/results_hijau.jpg"
+  },
+  "Ungu": {
+    name: "Merak Ungu", sci: "Pavo cristatus (mutasi)",
+    status: "Mutasi Warna", status_label: "Penangkaran", badge_class: "badge-lc",
+    habitat: "Penangkaran", panjang: "195–225 cm", populasi: "Penangkaran",
+    desc: "Merak Ungu adalah mutasi warna genetik dari Merak Biru yang menghasilkan semburat ungu pada bulu. Warna ini dihasilkan dari seleksi pemuliaan, sehingga hampir seluruh populasinya hidup dalam penangkaran.",
+    warning: null,
+    img: "/static/img/results_ungu.jpg"
+  }
+};
+</script>
+
+<div class="pg">
+
+  <div class="hdr">
+    {% if label %}
+    <h1>Hasil Klasifikasi</h1>
+    <p>Berikut hasil identifikasi spesies dari citra bulu yang diunggah.</p>
+    {% else %}
+    <h1>Klasifikasi Merak</h1>
+    <p>Unggah citra bulu merak untuk mendapatkan hasil identifikasi spesies.</p>
+    {% endif %}
+  </div>
+
+  {# Petunjuk upload hanya tampil sebelum ada hasil #}
+  {% if not label %}
+  <div class="upload-tips">
+    <div class="upload-tips-header">
+      <i class="bi bi-lightbulb" style="color:var(--g);font-size:14px;"></i>
+      <span>Panduan Pengambilan Foto</span>
+      <button class="upload-tips-toggle" onclick="toggleTips(this)">Sembunyikan</button>
+    </div>
+    <div id="tipsBody">
+      <div class="tips-body">
+
+        <!-- Poin-poin panduan -->
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-dot"></span>
+            <span>Atur <strong>pencahayaan yang cukup</strong> agar warna bulu terlihat jelas.</span>
+          </div>
+          <div class="tip-item">
+            <span class="tip-dot"></span>
+            <span>Pilih <strong>background polos</strong> agar pola bulu mudah dikenali.</span>
+          </div>
+          <div class="tip-item">
+            <span class="tip-dot"></span>
+            <span>Pastikan <strong>motif "mata" bulu</strong> berada di tengah dan tidak miring.</span>
+          </div>
+          <div class="tip-item">
+            <span class="tip-dot"></span>
+            <span>Atur <strong>jarak foto</strong> agar gambar tidak buram atau terpotong.</span>
+          </div>
+        </div>
+
+        <!-- Contoh foto baik/buruk -->
+        <div class="tips-examples">
+
+          <div class="tip-example">
+            <div class="tip-example-img-wrap good">
+              <img src="{{ url_for('static', filename='img/tip_good.jpg') }}"
+                   alt="Foto benar"
+                   onerror="this.parentElement.innerHTML='<div class=\'tip-ph\'><i class=\'bi bi-check-circle\'></i><span>Foto<br>Ideal</span></div>'">
+              <span class="tip-example-badge good">✓ Benar</span>
+            </div>
+            <span class="tip-example-label good">Cahaya cukup,<br>motif jelas</span>
+          </div>
+
+          <div class="tip-example">
+            <div class="tip-example-img-wrap bad">
+              <img src="{{ url_for('static', filename='img/tip_tilted.jpg') }}"
+                   alt="Foto miring"
+                   onerror="this.parentElement.innerHTML='<div class=\'tip-ph\'><i class=\'bi bi-x-circle\'></i><span>Terlalu<br>miring</span></div>'">
+              <span class="tip-example-badge bad">✗ Miring</span>
+            </div>
+            <span class="tip-example-label bad">Sudut miring<br>motif terpotong</span>
+          </div>
+
+          <div class="tip-example">
+            <div class="tip-example-img-wrap bad">
+              <img src="{{ url_for('static', filename='img/tip_dark.jpg') }}"
+                   alt="Foto gelap"
+                   onerror="this.parentElement.innerHTML='<div class=\'tip-ph\'><i class=\'bi bi-x-circle\'></i><span>Terlalu<br>gelap</span></div>'">
+              <span class="tip-example-badge bad">✗ Gelap</span>
+            </div>
+            <span class="tip-example-label bad">Cahaya kurang,<br>detail samar</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="split {% if label %}has-result{% endif %}" id="split">
+
+    <!-- PANEL KIRI: form upload atau gambar hasil -->
+    <div class="split-left">
+      {% if not label %}
+      <form method="POST" enctype="multipart/form-data" id="frm"
+            style="display:flex;flex-direction:column;flex:1;">
+
+        {% if error %}
+        <div style="background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;
+                    border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;">
+          ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="dropzone" id="dz" onclick="document.getElementById('file-input').click()">
+          <div id="dz-empty" style="display:flex;flex-direction:column;align-items:center;">
+            <div class="dz-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3L7 8.5H10.5V16H13.5V8.5H17L12 3Z" fill="white"/>
+                <path d="M19 17V20H5V17H3V22H21V17H19Z" fill="white"/>
+              </svg>
+            </div>
+            <p class="dz-title">Unggah Gambar</p>
+            <p class="dz-hint">Seret &amp; lepas atau klik untuk memilih</p>
+            <div class="dz-fmts">
+              <span class="dz-fmt-chip">PNG</span>
+              <span class="dz-fmt-chip">JPG</span>
+              <span class="dz-fmt-chip">JPEG</span>
+              <span class="dz-fmt-chip">Maks. 10MB</span>
+            </div>
+          </div>
+          <div id="dz-preview">
+            <img id="preview-img" src="#" alt="preview" class="preview-thumb">
+            <p class="preview-filename">
+              <span class="preview-dot"></span>
+              <span id="preview-name"></span>
+            </p>
+          </div>
+        </div>
+
+        <input type="file" name="file" id="file-input" accept="image/*" style="display:none;">
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>
+          Pilih gambar terlebih dahulu
+        </button>
+      </form>
+
+      {% else %}
+      <div class="img-caption">
+        <img src="{{ url_for('static', filename=image_file) }}" alt="Gambar dianalisis">
+        <span class="img-caption-label">Gambar yang dianalisis</span>
+        {% if elapsed %}
+        <span class="inference-time">
+          <span class="inference-time-dot"></span>
+          Waktu inferensi: <strong>{{ elapsed }}s</strong>
+        </span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- PANEL KANAN: hasil prediksi -->
+    <div class="split-right" id="rightPanel">
+      {% if label %}
+
+      <div class="result-label-sm">Spesies Terdeteksi</div>
+      <div class="result-main-row">
+
+        <!-- Nama spesies -->
+        <div class="result-species-col">
+          <div class="result-species-name">{{ label }}</div>
+          <div class="result-sci-name" id="sciNameDisplay"></div>
+        </div>
+
+        <div class="result-vdivider"></div>
+
+        <!-- Bar keyakinan -->
+        <div class="result-conf-col">
+          <div class="conf-pct-row">
+            <span class="conf-pct-number">{{ confidence }}%</span>
+            <span class="conf-pct-label">Keyakinan</span>
+          </div>
+          <div class="conf-bar-track">
+            <div class="conf-bar-fill" data-w="{{ confidence }}"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Skor semua kelas -->
+      <div class="scores-section">
+        <div class="scores-title">Skor Semua Kelas</div>
+        {% for item in probs %}
+        <div class="score-row">
+          <span class="score-row-name {% if item.label == label %}active{% endif %}">
+            {{ item.label }}
+          </span>
+          <div class="score-row-bar">
+            <div class="score-row-fill {% if item.label == label %}active{% endif %}"
+                 data-w="{{ item.score }}"></div>
+          </div>
+          <span class="score-row-pct {% if item.label == label %}active{% endif %}">
+            {{ item.score }}%
+          </span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="divider-thin"></div>
+
+      <div class="result-actions">
+        <a href="{{ url_for('classify') }}" class="rbtn">↩ Klasifikasi Gambar Lain</a>
+        <a href="{{ url_for('history') }}" class="rbtn" style="border-color:#d1d5db;color:#6b7280;">
+          <i class="bi bi-clock-history"></i> Lihat Histori
+        </a>
+      </div>
+
+      {% endif %}
+    </div>
+
+  </div>
+
+  {# Info card spesies dirender oleh JS setelah halaman load #}
+  {% if label %}
+  <div class="sinfo show" id="sinfo"></div>
+  {% endif %}
+
+</div>
+
+<script>
+{% if not label %}
+/* ── Drop zone & file preview ── */
+const dz      = document.getElementById('dz');
+const fileInput = document.getElementById('file-input');
+const submitBtn = document.getElementById('submit-btn');
+const dzEmpty = document.getElementById('dz-empty');
+const dzPreview = document.getElementById('dz-preview');
+const previewImg  = document.getElementById('preview-img');
+const previewName = document.getElementById('preview-name');
+
+fileInput.addEventListener('change', function () {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    previewImg.src = e.target.result;
+    previewName.textContent = file.name;
+    dzEmpty.style.display = 'none';
+    dzPreview.style.display = 'block';
+    dz.classList.add('has-img');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Analisis Gambar';
+  };
+  reader.readAsDataURL(file);
+});
+
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    fileInput.files = dt.files;
+    fileInput.dispatchEvent(new Event('change'));
+  }
+});
+
+function toggleTips(btn) {
+  const body = document.getElementById('tipsBody');
+  const hidden = body.style.display === 'none';
+  body.style.display = hidden ? 'block' : 'none';
+  btn.textContent   = hidden ? 'Sembunyikan' : 'Tampilkan';
+}
+{% endif %}
+
+{% if label %}
+window.addEventListener('load', () => {
+  /* Animasi progress bar setelah render */
+  setTimeout(() => {
+    document.querySelectorAll('[data-w]').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 100);
+
+  const label = "{{ label }}";
+  const info  = SPECIES_INFO[label];
+
+  /* Isi nama ilmiah di bawah nama spesies */
+  const sciEl = document.getElementById('sciNameDisplay');
+  if (info && sciEl) {
+    sciEl.textContent = '(' + info.sci + ')';
+  }
+
+  /* Render info card spesies di bawah split */
+  const card = document.getElementById('sinfo');
+  if (info && card) {
+    const warnHtml = info.warning
+      ? `<div class="warn">
+           <span style="font-size:16px;flex-shrink:0;">⚠️</span>
+           <span>${info.warning}</span>
+         </div>`
+      : '';
+    card.innerHTML = `
+      <div class="sinfo-layout">
+
+        <div class="sinfo-content-col">
+          <div class="sinfo-top">
+            <div>
+              <div class="sinfo-name">${info.name}</div>
+              <div class="sinfo-sci">${info.sci}</div>
+            </div>
+            <span class="badge ${info.badge_class}">${info.status} · ${info.status_label}</span>
+          </div>
+          <p class="sinfo-desc">${info.desc}</p>
+          <div class="sinfo-grid">
+            <div class="sfact">
+              <div class="sfact-l">Habitat</div>
+              <div class="sfact-v">${info.habitat}</div>
+            </div>
+            <div class="sfact">
+              <div class="sfact-l">Panjang</div>
+              <div class="sfact-v">${info.panjang}</div>
+            </div>
+            <div class="sfact">
+              <div class="sfact-l">Estimasi Populasi</div>
+              <div class="sfact-v">${info.populasi}</div>
+            </div>
+            <div class="sfact">
+              <div class="sfact-l">Status IUCN</div>
+              <div class="sfact-v">${info.status_label}</div>
+            </div>
+          </div>
+          ${warnHtml}
+        </div>
+
+        <div class="sinfo-img-col">
+          <div class="sinfo-img-wrap">
+            <img
+              src="${info.img}"
+              alt="${info.name}"
+              class="sinfo-species-img"
+              onerror="this.parentElement.classList.add('sinfo-img-error');this.parentElement.innerHTML='<div class=&quot;sinfo-img-ph&quot;><i class=&quot;bi bi-image&quot;></i><span>${info.name}</span></div>'"
+            >
+          </div>
+          <span class="sinfo-img-caption">Tampilan ${info.name}</span>
+        </div>
+
+      </div>
+    `;
+  }
+});
+{% endif %}
+</script>
+
+{% endblock %}

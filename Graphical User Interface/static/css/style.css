@@ -1,0 +1,1409 @@
+/* =============================================================
+   style.css — PavoLens
+   Struktur:
+     1. Google Fonts
+     2. CSS Custom Properties (token warna terpusat)
+     3. Base Reset
+     4. Shared Components (card, divider, badge, button, dll.)
+     5. Page Layout (.pg, .hdr, .sec-label)
+     6. Navbar Overrides
+     7. Hero / Index Page
+     8. About Page
+     9. Classify Page
+    10. History Page
+   ============================================================= */
+
+
+/* -------------------------------------------------------------
+   1. GOOGLE FONTS
+   ------------------------------------------------------------- */
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+
+   /* -------------------------------------------------------------
+      2. CSS CUSTOM PROPERTIES
+      Semua warna brand ada di sini — ubah di satu tempat,
+      berlaku di seluruh halaman.
+      ------------------------------------------------------------- */
+   :root {
+     /* Brand hijau */
+     --g:       #1D9E75;
+     --gd:      #0a5c42;
+     --gl:      #e0f5ec;
+     --gb:      #9FE1CB;
+   
+     /* Teal — navbar & tombol utama */
+     --teal:    #0d7a8a;
+     --teal-d:  #0a5c6e;
+     --teal-db: #0d5c6e;
+   
+     /* Warna per spesies merak */
+     --clr-biru:  #0d7a8a;
+     --clr-hijau: #1D9E75;
+     --clr-ungu:  #7c3aed;
+   
+     /* Netral umum */
+     --border:    #d1d5db;
+     --border-lt: #e5e7eb;
+     --bg-muted:  #f9fafb;
+     --bg-light:  #f3f4f6;
+     --shadow-3d: #c8cdd5;
+     --text-main: #111827;
+     --text-sub:  #6b7280;
+     --text-muted:#9ca3af;
+   }
+   
+   
+   /* -------------------------------------------------------------
+      3. BASE RESET
+      Di-scope ke .pg agar tidak bertabrakan dengan Bootstrap.
+      ------------------------------------------------------------- */
+   .pg *, .pg *::before, .pg *::after {
+     box-sizing: border-box;
+   }
+   
+   body {
+     overflow-x: hidden;
+   }
+   
+   
+   /* -------------------------------------------------------------
+      4. SHARED COMPONENTS
+      Dipakai di dua halaman atau lebih.
+      ------------------------------------------------------------- */
+   
+   /* ── Animasi dasar ── */
+   @keyframes up {
+     from { opacity: 0; transform: translateY(14px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   
+   /* ── Kartu 3D ── */
+   .card3 {
+     background: white;
+     border: 1px solid var(--border);
+     border-radius: 14px;
+     box-shadow: 0 3px 0 var(--shadow-3d), 0 4px 12px rgba(0,0,0,.06);
+     padding: 1.5rem;
+     transition: transform .15s, box-shadow .15s;
+   }
+   .card3:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 5px 0 var(--shadow-3d), 0 8px 20px rgba(0,0,0,.09);
+   }
+   
+   /* ── Divider horizontal ── */
+   .divider {
+     height: 1px;
+     background: #f0f0f0;
+     margin: 2rem 0;
+   }
+   .divider-thin {
+     height: 1px;
+     background: #f0f0f0;
+     margin: 1.2rem 0;
+   }
+   
+   /* ── Badge status IUCN ── */
+   .badge {
+     display: inline-flex;
+     align-items: center;
+     gap: 4px;
+     font-size: 10px;
+     font-weight: 600;
+     padding: 3px 10px;
+     border-radius: 20px;
+     margin-bottom: 8px;
+   }
+   .badge-lc { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+   .badge-en { background: #fef9c3; color: #854d0e; border: 1px solid #fde68a; }
+   .badge-vu { background: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+   .badge-cr { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+   
+   /* ── Tombol outline hijau (dipakai classify & history) ── */
+   .rbtn {
+     display: inline-block;
+     margin-top: 1rem;
+     padding: 8px 20px;
+     background: transparent;
+     color: var(--g);
+     border: 1.5px solid var(--gb);
+     border-radius: 8px;
+     font-family: 'DM Sans', sans-serif;
+     font-size: 13px;
+     font-weight: 500;
+     cursor: pointer;
+     text-decoration: none;
+     transition: background .2s, border-color .2s;
+   }
+   .rbtn:hover { background: var(--gl); border-color: var(--g); }
+   
+   /* ── Chip dot (warna titik indikator spesies) ── */
+   .species-dot {
+     display: inline-block;
+     width: 8px;
+     height: 8px;
+     border-radius: 50%;
+     flex-shrink: 0;
+     vertical-align: middle;
+   }
+   .species-dot--biru  { background: var(--clr-biru); }
+   .species-dot--hijau { background: var(--clr-hijau); }
+   .species-dot--ungu  { background: var(--clr-ungu); }
+   
+   
+   /* -------------------------------------------------------------
+      5. PAGE LAYOUT
+      ------------------------------------------------------------- */
+   
+   /* ── Page wrapper ── */
+   .pg {
+     max-width: 980px;
+     margin: 0 auto;
+     padding: 2.5rem 1.5rem 4rem;
+     font-family: 'DM Sans', sans-serif;
+     color: var(--text-main);
+   }
+   .pg--wide  { max-width: 980px; }
+   .pg--about { max-width: 860px; padding-bottom: 5rem; }
+   
+   /* ── Page header ── */
+   .hdr {
+     text-align: center;
+     margin-bottom: 2rem;
+     animation: up .5s ease both;
+   }
+   .pg--about .hdr { margin-bottom: 2.5rem; }
+   
+   .hdr h1 {
+     font-family: 'DM Serif Display', serif;
+     font-size: 1.9rem;
+     line-height: 1.2;
+     margin-bottom: 6px;
+   }
+   .hdr p {
+     font-size: 14px;
+     color: var(--text-sub);
+   }
+   
+   /* ── Eyebrow label (pill di atas judul) ── */
+   .eyebrow {
+     display: inline-block;
+     font-size: 11px;
+     font-weight: 600;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     color: var(--g);
+     background: var(--gl);
+     border: 1px solid var(--gb);
+     border-radius: 20px;
+     padding: 4px 14px;
+     margin-bottom: 12px;
+   }
+   
+   /* ── Section label (uppercase kecil di atas grup konten) ── */
+   .sec-label {
+     font-size: 11px;
+     font-weight: 600;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     color: var(--text-muted);
+     margin-bottom: 1rem;
+     display: block;
+   }
+   
+   
+   /* -------------------------------------------------------------
+      6. NAVBAR OVERRIDES
+      ------------------------------------------------------------- */
+   .navbar.bg-dark {
+     background-color: var(--teal-db) !important;
+   }
+   .navbar.bg-dark .nav-link:hover,
+   .navbar.bg-dark .nav-link.active {
+     color: var(--gb) !important;
+   }
+   
+   
+   /* -------------------------------------------------------------
+      7. HERO / INDEX PAGE
+      ------------------------------------------------------------- */
+   .hero-fullbleed {
+     position: relative;
+     width: 100vw;
+     height: 92vh;
+     min-height: 560px;
+     overflow: hidden;
+     display: flex;
+     align-items: flex-end;
+     margin-left: calc(-50vw + 50%);
+     margin-top: -24px;
+   }
+   
+   .hero-bg {
+     position: absolute;
+     inset: 0;
+     background-size: cover;
+     background-position: center 30%;
+     transform: scale(1.04);
+     animation: heroZoom 12s ease-out forwards;
+   }
+   
+   @keyframes heroZoom {
+     from { transform: scale(1.04); }
+     to   { transform: scale(1.00); }
+   }
+   
+   .hero-overlay {
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(
+       to top,
+       rgba(0,0,0,0.75) 0%,
+       rgba(0,0,0,0.38) 50%,
+       rgba(0,0,0,0.12) 100%
+     );
+   }
+   
+   .hero-content {
+     position: relative;
+     z-index: 2;
+     padding: 0 6vw 18vh;
+     max-width: 660px;
+     animation: heroUp 0.9s cubic-bezier(.22,.68,0,1.2) both;
+     animation-delay: 0.2s;
+   }
+   
+   @keyframes heroUp {
+     from { opacity: 0; transform: translateY(28px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   
+   .hero-eyebrow {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.75rem;
+     font-weight: 500;
+     letter-spacing: 0.2em;
+     text-transform: uppercase;
+     color: rgba(255,255,255,0.55);
+     margin-bottom: 0.65rem;
+   }
+   
+   .hero-headline {
+     font-family: 'Playfair Display', serif;
+     font-size: clamp(2.4rem, 5vw, 3.6rem);
+     font-weight: 700;
+     line-height: 1.12;
+     color: #fff;
+     margin-bottom: 1rem;
+     letter-spacing: -0.01em;
+   }
+   
+   .hero-sub {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.97rem;
+     font-weight: 300;
+     color: rgba(255,255,255,0.72);
+     line-height: 1.65;
+     margin-bottom: 2rem;
+     max-width: 400px;
+   }
+   
+   .hero-cta {
+     display: flex;
+     gap: 12px;
+     flex-wrap: wrap;
+   }
+   
+   .btn-primary-cta {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.9rem;
+     font-weight: 500;
+     letter-spacing: 0.03em;
+     padding: 13px 28px;
+     border-radius: 6px;
+     border: none;
+     background: var(--teal);
+     color: #fff;
+     text-decoration: none;
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+     box-shadow: 0 4px 20px rgba(13,122,138,0.45);
+   }
+   .btn-primary-cta:hover {
+     background: var(--teal-d);
+     color: #fff;
+     transform: translateY(-2px);
+     box-shadow: 0 8px 26px rgba(13,122,138,0.5);
+   }
+   .btn-primary-cta:active { transform: translateY(0); }
+   
+   .btn-ghost-cta {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.9rem;
+     font-weight: 400;
+     letter-spacing: 0.03em;
+     padding: 13px 28px;
+     border-radius: 6px;
+     border: 1px solid rgba(255,255,255,0.32);
+     background: rgba(255,255,255,0.07);
+     color: rgba(255,255,255,0.85);
+     text-decoration: none;
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     backdrop-filter: blur(8px);
+     -webkit-backdrop-filter: blur(8px);
+     transition: background 0.2s, border-color 0.2s, transform 0.15s;
+   }
+   .btn-ghost-cta:hover {
+     background: rgba(255,255,255,0.15);
+     border-color: rgba(255,255,255,0.6);
+     color: #fff;
+     transform: translateY(-2px);
+   }
+   
+   .hero-badge {
+     position: absolute;
+     z-index: 2;
+     bottom: 3rem;
+     right: 6vw;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     gap: 7px;
+     animation: heroUp 1s cubic-bezier(.22,.68,0,1.2) both;
+     animation-delay: 0.5s;
+   }
+   .hero-badge-label {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.66rem;
+     letter-spacing: 0.15em;
+     text-transform: uppercase;
+     color: rgba(255,255,255,0.4);
+   }
+   .hero-badge-pills { display: flex; gap: 6px; }
+   .hero-pill {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 0.71rem;
+     font-weight: 500;
+     padding: 5px 13px;
+     border-radius: 20px;
+     border: 1px solid rgba(255,255,255,0.22);
+     background: rgba(255,255,255,0.09);
+     color: rgba(255,255,255,0.78);
+     backdrop-filter: blur(4px);
+   }
+   
+   
+   /* -------------------------------------------------------------
+      8. ABOUT PAGE
+      ------------------------------------------------------------- */
+   
+   /* ── About card (logo + deskripsi) ── */
+   .about-card {
+     display: flex;
+     align-items: center;
+     gap: 1.4rem;
+     background: #f8fefb;
+     border: 1px solid var(--gb);
+     border-radius: 16px;
+     padding: 1.4rem 1.6rem;
+     margin-bottom: 2rem;
+   }
+   .about-logo {
+     flex-shrink: 0;
+     width: 60px;
+     height: 60px;
+     border-radius: 14px;
+     object-fit: contain;
+   }
+   .about-card h2 {
+     font-size: 16px;
+     font-weight: 700;
+     color: var(--gd);
+     margin: 0 0 6px;
+   }
+   .about-card p {
+     font-size: 13px;
+     color: #4b5563;
+     line-height: 1.65;
+     margin: 0;
+   }
+   
+   /* ── Grid spesies ── */
+   .sp-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 14px;
+     margin-bottom: 2.5rem;
+     animation: up .5s .1s ease both;
+   }
+   .sp-card         { overflow: hidden; padding: 0; }
+   .sp-card .sp-body{ padding: 1rem; }
+   .sp-img {
+     width: 100%;
+     height: 140px;
+     object-fit: cover;
+     border-radius: 10px 10px 0 0;
+     background: var(--bg-light);
+     display: block;
+   }
+   .sp-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+   .sp-sci  { font-size: 12px; color: var(--text-sub); font-style: italic; margin-bottom: 8px; }
+   .sp-desc { font-size: 13px; color: #4b5563; line-height: 1.6; }
+   
+   /* ── Grid langkah cara kerja ── */
+   .steps-grid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 12px;
+     margin-bottom: 2.5rem;
+     animation: up .5s .15s ease both;
+   }
+   .step-card  { text-align: center; }
+   .step-num {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     background: var(--g);
+     color: white;
+     font-size: 15px;
+     font-weight: 600;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto 10px;
+   }
+   .step-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+   .step-desc  { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+   
+   /* ── Grid teknologi ── */
+   .tech-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 12px;
+     animation: up .5s .2s ease both;
+   }
+   .tech-header {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     margin-bottom: 12px;
+     padding-bottom: 10px;
+     border-bottom: 1px solid #f0f0f0;
+   }
+   .tech-icon {
+     width: 32px;
+     height: 32px;
+     border-radius: 8px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-shrink: 0;
+     font-size: 16px;
+   }
+   .tech-title { font-size: 13px; font-weight: 600; color: var(--text-main); }
+   .tech-chips { display: flex; flex-direction: column; gap: 7px; }
+   .tech-chip {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     padding: 7px 10px;
+     background: var(--bg-muted);
+     border: 1px solid #f0f0f0;
+     border-radius: 8px;
+   }
+   .tc-dot  { width: 8px; height: 8px; border-radius: 50%; background: var(--gb); flex-shrink: 0; }
+   .tc-name { font-size: 12px; color: #374151; }
+   
+   /* ── Responsive — About ── */
+   @media (max-width: 640px) {
+     .about-card  { flex-direction: column; align-items: flex-start; }
+     .sp-grid     { grid-template-columns: 1fr; }
+     .steps-grid  { grid-template-columns: 1fr 1fr; }
+     .tech-grid   { grid-template-columns: 1fr; }
+   }
+   
+   
+   /* -------------------------------------------------------------
+      9. CLASSIFY PAGE
+      ------------------------------------------------------------- */
+   
+   /* ── Layout split dua panel ── */
+   .split {
+     display: grid;
+     grid-template-columns: 1fr 0px;
+     gap: 0;
+     transition: grid-template-columns .55s cubic-bezier(.4,0,.2,1);
+     overflow: hidden;
+     border-radius: 16px;
+     border: 1px solid var(--border);
+     background: white;
+     min-height: 420px;
+     box-shadow: 0 3px 0 var(--shadow-3d), 0 4px 16px rgba(0,0,0,.07);
+   }
+   .split.has-result { grid-template-columns: 1fr 1fr; }
+   
+   /* ── Panel kiri (upload / preview) ── */
+   .split-left {
+     padding: 1.5rem;
+     border-right: 1px solid #f0f0f0;
+     display: flex;
+     flex-direction: column;
+     justify-content: stretch;
+   }
+   
+   /* ── Panel kanan (hasil) ── */
+   .split-right {
+     padding: 2rem;
+     overflow: hidden;
+     opacity: 0;
+     min-width: 0;
+     transform: translateX(20px);
+     transition: opacity .45s .2s ease, transform .45s .2s ease;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+   }
+   .split.has-result .split-right {
+     opacity: 1;
+     transform: translateX(0);
+   }
+   
+   /* ── Drop zone ── */
+   .dropzone {
+     border: 2px dashed var(--gb);
+     border-radius: 12px;
+     background: #f8fefb;
+     padding: 2rem 1.25rem;
+     text-align: center;
+     cursor: pointer;
+     transition: background .2s, border-color .2s, transform .15s;
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+   }
+   .dropzone:hover    { background: var(--gl); border-color: var(--g); }
+   .dropzone.over     { background: #d4f0e4; border-color: var(--gd); transform: scale(1.01); }
+   .dropzone.has-img  { padding: 1.25rem; }
+   
+   /* ── Ikon upload ── */
+   .dz-icon {
+     width: 52px;
+     height: 52px;
+     border-radius: 50%;
+     background: var(--teal);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto 12px;
+     transition: background .2s, transform .2s;
+   }
+   .dropzone:hover .dz-icon { background: var(--teal-d); transform: translateY(-2px); }
+   .dz-icon svg             { width: 22px; height: 22px; }
+   
+   .dz-title  { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+   .dz-hint   { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; }
+   .dz-fmts   { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+   .dz-fmt-chip {
+     font-size: 10px;
+     font-weight: 600;
+     color: var(--gd);
+     background: var(--gl);
+     border: 1px solid var(--gb);
+     border-radius: 5px;
+     padding: 2px 8px;
+     letter-spacing: .5px;
+   }
+   
+   /* ── Preview gambar di dropzone ── */
+   #dz-preview            { display: none; }
+   .preview-thumb {
+     max-height: 180px;
+     max-width: 100%;
+     border-radius: 10px;
+     object-fit: contain;
+     display: block;
+     margin: 0 auto 8px;
+     border: 1px solid var(--gb);
+   }
+   .preview-filename {
+     font-size: 12px;
+     color: var(--text-sub);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 5px;
+   }
+   .preview-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g); flex-shrink: 0; }
+   
+   /* ── Tombol submit ── */
+   .submit-btn {
+     width: 100%;
+     margin-top: 12px;
+     padding: 13px;
+     background: var(--g);
+     color: white;
+     border: none;
+     border-radius: 10px;
+     font-family: 'DM Sans', sans-serif;
+     font-size: 14px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background .2s, transform .15s;
+   }
+   .submit-btn:disabled              { background: #c4c4c4; cursor: not-allowed; }
+   .submit-btn:not(:disabled):hover  { background: var(--gd); transform: translateY(-1px); }
+   
+   /* ── Petunjuk upload (tips panel) ── */
+   .upload-tips {
+     background: #f8fefb;
+     border: 1px solid var(--gb);
+     border-radius: 14px;
+     padding: 1.1rem 1.4rem;
+     margin-bottom: 1.1rem;
+     animation: up .4s ease both;
+   }
+   .upload-tips-header {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+   }
+   .upload-tips-header span {
+     font-size: 15px;
+     font-weight: 600;
+     color: var(--gd);
+   }
+   .upload-tips-toggle {
+     margin-left: auto;
+     font-size: 11px;
+     color: var(--g);
+     cursor: pointer;
+     background: none;
+     border: none;
+     padding: 0;
+     font-family: 'DM Sans', sans-serif;
+     font-weight: 500;
+     text-decoration: underline;
+     text-underline-offset: 2px;
+   }
+   #tipsBody { margin-top: 0.9rem; }
+   
+   .tips-body {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 16px;
+     align-items: center;
+   }
+   .tips-list  {
+     display: flex;
+     flex-direction: column;
+     gap: 7px;
+     margin-bottom: 20px;
+   }
+   .tip-item {
+     display: flex;
+     align-items: flex-start;
+     gap: 8px;
+     font-size: 12px;
+     color: #4b5563;
+     line-height: 1.5;
+   }
+   .tip-dot {
+     width: 6px;
+     height: 6px;
+     border-radius: 50%;
+     background: var(--g);
+     flex-shrink: 0;
+     margin-top: 5px;
+   }
+   .tips-examples {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 8px;
+   }
+   .tip-example {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 5px;
+   }
+   .tip-example-img-wrap {
+     width: 100%;
+     aspect-ratio: 1 / 1;
+     border-radius: 10px;
+     overflow: hidden;
+     border: 2px solid transparent;
+     position: relative;
+     background: var(--bg-light);
+   }
+   .tip-example-img-wrap img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+   }
+   .tip-example-img-wrap.good { border-color: var(--g); }
+   .tip-example-img-wrap.bad  { border-color: #ef4444; }
+   .tip-example-badge {
+     position: absolute;
+     top: 5px;
+     left: 5px;
+     font-size: 9px;
+     font-weight: 700;
+     padding: 2px 6px;
+     border-radius: 20px;
+     letter-spacing: .3px;
+     line-height: 1.4;
+     white-space: nowrap;
+   }
+   .tip-example-badge.good { background: var(--g); color: #fff; }
+   .tip-example-badge.bad  { background: #ef4444; color: #fff; }
+   .tip-ph {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 4px;
+     color: var(--text-muted);
+   }
+   .tip-ph i    { font-size: 1.4rem; }
+   .tip-ph span { font-size: 10px; text-align: center; line-height: 1.3; padding: 0 4px; }
+   .tip-example-label {
+     font-size: 10px;
+     font-weight: 500;
+     color: var(--text-sub);
+     text-align: center;
+     line-height: 1.3;
+   }
+   .tip-example-label.good { color: var(--g); }
+   .tip-example-label.bad  { color: #ef4444; }
+   
+   /* ── Gambar hasil klasifikasi (panel kiri setelah upload) ── */
+   .img-caption {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100%;
+     gap: 8px;
+   }
+   .img-caption img {
+     max-height: 280px;
+     max-width: 100%;
+     border-radius: 12px;
+     object-fit: contain;
+     border: 1px solid var(--border-lt);
+   }
+   .img-caption-label { font-size: 12px; color: var(--text-muted); }
+   .inference-time {
+     display: inline-flex;
+     align-items: center;
+     gap: 5px;
+     font-size: 11px;
+     font-weight: 500;
+     color: var(--text-sub);
+     background: var(--bg-muted);
+     border: 1px solid var(--border-lt);
+     border-radius: 20px;
+     padding: 3px 10px;
+     margin-top: 8px;
+   }
+   .inference-time-dot {
+     width: 6px;
+     height: 6px;
+     border-radius: 50%;
+     background: var(--g);
+     flex-shrink: 0;
+   }
+   
+   /* ── Panel hasil: nama spesies + bar keyakinan ── */
+   .result-label-sm {
+     font-size: 10px;
+     font-weight: 700;
+     letter-spacing: .12em;
+     text-transform: uppercase;
+     color: var(--text-muted);
+     margin-bottom: 8px;
+   }
+   .result-main-row {
+     display: flex;
+     align-items: center;
+     gap: 1.2rem;
+     margin-bottom: 1.5rem;
+     padding-bottom: 1.4rem;
+     border-bottom: 1px solid var(--bg-light);
+   }
+   .result-species-name {
+     font-size: 2rem;
+     font-weight: 800;
+     color: var(--text-main);
+     line-height: 1.05;
+     margin: 0 0 3px;
+     letter-spacing: -.02em;
+   }
+   .result-sci-name {
+     font-size: 12.5px;
+     font-style: italic;
+     color: var(--text-muted);
+     font-weight: 400;
+     white-space: nowrap;
+   }
+   .result-vdivider {
+     width: 1px;
+     align-self: stretch;
+     background: var(--border-lt);
+     flex-shrink: 0;
+   }
+   .result-conf-col {
+     flex: 1;
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+   }
+   .conf-pct-row {
+     display: flex;
+     align-items: baseline;
+     gap: 6px;
+     margin-bottom: 7px;
+   }
+   .conf-pct-number {
+     font-size: 1.9rem;
+     font-weight: 900;
+     color: var(--g);
+     line-height: 1;
+     letter-spacing: -.03em;
+   }
+   .conf-pct-label {
+     font-size: 11px;
+     font-weight: 600;
+     color: var(--text-muted);
+     letter-spacing: .04em;
+     text-transform: uppercase;
+   }
+   .conf-bar-track {
+     height: 7px;
+     background: var(--border-lt);
+     border-radius: 99px;
+     overflow: hidden;
+   }
+   .conf-bar-fill {
+     height: 100%;
+     border-radius: 99px;
+     background: linear-gradient(90deg, #34d399, var(--g));
+     width: 0;
+     transition: width .85s cubic-bezier(.4,0,.2,1);
+   }
+   
+   /* ── Skor semua kelas ── */
+   .scores-section { margin-bottom: 1.2rem; }
+   .scores-title {
+     font-size: 10px;
+     font-weight: 700;
+     letter-spacing: .12em;
+     text-transform: uppercase;
+     color: var(--text-muted);
+     margin-bottom: 12px;
+   }
+   .score-row {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     margin-bottom: 11px;
+   }
+   .score-row:last-child { margin-bottom: 0; }
+   .score-row-name {
+     width: 48px;
+     font-size: 13px;
+     font-weight: 500;
+     color: var(--text-sub);
+     flex-shrink: 0;
+   }
+   .score-row-name.active { color: var(--g); font-weight: 700; }
+   .score-row-bar {
+     flex: 1;
+     height: 6px;
+     background: var(--bg-light);
+     border-radius: 99px;
+     overflow: hidden;
+   }
+   .score-row-fill {
+     height: 100%;
+     border-radius: 99px;
+     background: var(--border-lt);
+     width: 0;
+     transition: width .85s cubic-bezier(.4,0,.2,1);
+   }
+   .score-row-fill.active { background: linear-gradient(90deg, #34d399, var(--g)); }
+   .score-row-pct {
+     width: 46px;
+     text-align: right;
+     font-size: 12px;
+     font-weight: 500;
+     color: var(--text-muted);
+     flex-shrink: 0;
+   }
+   .score-row-pct.active { color: var(--g); font-weight: 700; }
+   
+   .result-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+   
+   /* ── Info card spesies (di bawah split) ── */
+   .sinfo {
+     margin-top: 1rem;
+     border-radius: 16px;
+     border: 1px solid var(--border);
+     background: white;
+     padding: 1.5rem 2rem;
+     display: none;
+     animation: up .5s ease both;
+     box-shadow: 0 3px 0 var(--shadow-3d), 0 4px 16px rgba(0,0,0,.07);
+   }
+   .sinfo.show { display: block; }
+   .sinfo-top {
+     display: flex;
+     align-items: flex-start;
+     justify-content: space-between;
+     gap: 1rem;
+     flex-wrap: wrap;
+     margin-bottom: 1rem;
+   }
+   .sinfo-name { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text-main); }
+   .sinfo-sci  { font-size: 13px; color: var(--text-sub); font-style: italic; margin-top: 2px; }
+   .sinfo .badge { gap: 5px; font-size: 11px; padding: 5px 12px; white-space: nowrap; margin-bottom: 0; }
+   .sinfo-desc { font-size: 14px; color: #4b5563; line-height: 1.7; margin-bottom: 1rem; }
+   .sinfo-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+     gap: 10px;
+   }
+   .sfact {
+     background: var(--bg-muted);
+     border: 1px solid var(--border);
+     border-radius: 10px;
+     padding: .75rem 1rem;
+     box-shadow: 0 2px 0 var(--shadow-3d);
+   }
+   .sfact-l { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+   .sfact-v { font-size: 13px; font-weight: 600; color: var(--text-main); }
+   
+   /* ── Warning box (endangered species) ── */
+   .warn {
+     margin-top: 1rem;
+     background: #fff7ed;
+     border: 1px solid #fed7aa;
+     border-radius: 10px;
+     padding: .9rem 1.1rem;
+     font-size: 13px;
+     color: #9a3412;
+     line-height: 1.6;
+     display: flex;
+     gap: 10px;
+     align-items: flex-start;
+   }
+   
+   /* ── Info card spesies: layout dua kolom (konten + foto) ── */
+   .sinfo-layout {
+     display: flex;
+     gap: 28px;
+     align-items: stretch;
+   }
+   .sinfo-content-col {
+     flex: 1;
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+   }
+   .sinfo-img-col {
+     flex: 0 0 200px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 8px;
+   }
+   .sinfo-img-wrap {
+     width: 200px;
+     height: 100%;
+     min-height: 260px;
+     border-radius: 12px;
+     overflow: hidden;
+     background: #f1f5f1;
+     border: 1px solid #e2e8e2;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+   }
+   .sinfo-species-img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     object-position: center top;
+     transition: transform 0.4s ease;
+   }
+   .sinfo-img-wrap:hover .sinfo-species-img { transform: scale(1.05); }
+   .sinfo-img-ph {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 8px;
+     color: #9ca3af;
+     font-size: 13px;
+     text-align: center;
+     height: 100%;
+     width: 100%;
+     padding: 16px;
+   }
+   .sinfo-img-ph i { font-size: 36px; opacity: .5; }
+   .sinfo-img-caption {
+     font-size: 11.5px;
+     color: #9ca3af;
+     text-align: center;
+     font-style: italic;
+   }
+   .sinfo-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 10px;
+     margin-top: 16px;
+   }
+
+   /* ── Responsive — Classify ── */
+   @media (max-width: 680px) {
+     .split, .split.has-result { grid-template-columns: 1fr; }
+     .split-right              { border-top: 1px solid #f0f0f0; padding-top: 1.5rem; }
+     .tips-body                { grid-template-columns: 1fr; }
+     .result-main-row          { flex-direction: column; align-items: flex-start; gap: .9rem; }
+     .result-vdivider          { display: none; }
+     .result-species-name      { font-size: 1.6rem; }
+     .conf-pct-number          { font-size: 1.6rem; }
+     .sinfo-layout             { flex-direction: column-reverse; }
+     .sinfo-img-col            { flex: unset; width: 100%; }
+     .sinfo-img-wrap           { width: 100%; min-height: 200px; height: 200px; }
+     .sinfo-grid               { grid-template-columns: 1fr 1fr; }
+   }
+   
+   
+   /* -------------------------------------------------------------
+      10. HISTORY PAGE
+      ------------------------------------------------------------- */
+   
+   /* ── Grafik (donut + line) ── */
+   .charts-row {
+     display: grid;
+     grid-template-columns: 220px 1fr;
+     gap: 14px;
+     margin-bottom: 2rem;
+     animation: up .5s .05s ease both;
+   }
+   .chart-card {
+     background: white;
+     border: 1px solid var(--border);
+     border-radius: 14px;
+     box-shadow: 0 3px 0 var(--shadow-3d), 0 4px 12px rgba(0,0,0,.06);
+     padding: 1.25rem 1.5rem;
+   }
+   .chart-card-title {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 1.4px;
+     text-transform: uppercase;
+     color: var(--text-muted);
+     margin-bottom: 1rem;
+   }
+   .donut-wrap {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 14px;
+   }
+   .donut-canvas-wrap {
+     position: relative;
+     width: 130px;
+     height: 130px;
+   }
+   .donut-center {
+     position: absolute;
+     inset: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     pointer-events: none;
+   }
+   .donut-center-num {
+     font-family: 'DM Serif Display', serif;
+     font-size: 1.6rem;
+     font-weight: 700;
+     color: var(--text-main);
+     line-height: 1;
+   }
+   .donut-center-label {
+     font-size: 9px;
+     color: var(--text-muted);
+     letter-spacing: .5px;
+     text-transform: uppercase;
+     margin-top: 2px;
+   }
+   .donut-legend { width: 100%; display: flex; flex-direction: column; gap: 7px; }
+   .donut-leg-item {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 11px;
+   }
+   .donut-leg-left { display: flex; align-items: center; gap: 7px; color: #374151; }
+   .donut-leg-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+   .donut-leg-pct  { font-size: 11px; font-weight: 600; color: var(--text-main); }
+   
+   /* ── Info bar atas (jumlah + tombol hapus) ── */
+   .hist-bar {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 10px;
+     margin-bottom: 1.5rem;
+     padding: 10px 14px;
+     background: var(--bg-muted);
+     border: 1px solid var(--border-lt);
+     border-radius: 10px;
+     font-size: 13px;
+     color: #4b5563;
+   }
+   .hist-count       { display: flex; align-items: center; gap: 4px; }
+   .hist-clear-btn {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 12px;
+     font-weight: 500;
+     color: #b91c1c;
+     background: #fef2f2;
+     border: 1px solid #fca5a5;
+     border-radius: 7px;
+     padding: 5px 12px;
+     cursor: pointer;
+     transition: background .2s;
+   }
+   .hist-clear-btn:hover { background: #fee2e2; }
+   
+   /* ── Toolbar filter + sort + export ── */
+   .hist-toolbar {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     flex-wrap: wrap;
+     margin-bottom: 10px;
+   }
+   .hist-toolbar-label {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 1.4px;
+     text-transform: uppercase;
+     color: var(--text-muted);
+     flex-shrink: 0;
+   }
+   .hist-select-wrap {
+     position: relative;
+     display: inline-flex;
+     align-items: center;
+   }
+   .hist-select-wrap .hist-select-icon {
+     position: absolute;
+     left: 9px;
+     color: var(--text-sub);
+     font-size: 12px;
+     pointer-events: none;
+     z-index: 1;
+     line-height: 1;
+   }
+   .hist-select {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 12px;
+     color: #374151;
+     background: white;
+     border: 1px solid var(--border);
+     border-radius: 8px;
+     padding: 5px 30px 5px 28px;
+     cursor: pointer;
+     outline: none;
+     transition: border-color .2s, box-shadow .2s;
+     box-shadow: 0 1px 0 var(--border-lt);
+     appearance: none;
+     -webkit-appearance: none;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'%3E%3Cpath fill='%236b7280' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+     background-repeat: no-repeat;
+     background-position: right 9px center;
+   }
+   .hist-select:focus {
+     border-color: var(--g);
+     box-shadow: 0 0 0 3px rgba(29,158,117,.12);
+   }
+   .hist-toolbar-sep {
+     width: 1px;
+     height: 20px;
+     background: var(--border-lt);
+     flex-shrink: 0;
+   }
+   .hist-export-btn {
+     font-family: 'DM Sans', sans-serif;
+     font-size: 12px;
+     font-weight: 500;
+     color: var(--gd);
+     background: var(--gl);
+     border: 1px solid var(--gb);
+     border-radius: 8px;
+     padding: 5px 12px;
+     cursor: pointer;
+     transition: background .2s;
+     margin-left: auto;
+     display: flex;
+     align-items: center;
+     gap: 5px;
+   }
+   .hist-export-btn:hover { background: #c8eedd; }
+   .hist-result-count {
+     font-size: 11px;
+     color: var(--text-muted);
+     margin-bottom: 10px;
+     min-height: 18px;
+   }
+   .hist-result-count strong { color: #374151; }
+   .hist-no-filter {
+     text-align: center;
+     padding: 2.5rem 1rem;
+     color: var(--text-muted);
+     font-size: 13px;
+     background: var(--bg-muted);
+     border: 1px dashed var(--border);
+     border-radius: 12px;
+   }
+   
+   /* ── Ringkasan per spesies ── */
+   .hist-summary-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 12px;
+     margin-bottom: 2rem;
+     animation: up .5s .08s ease both;
+   }
+   .hist-sum-card  { text-align: center; padding: 1.25rem 1rem; }
+   .hist-sum-num {
+     font-family: 'DM Serif Display', serif;
+     font-size: 2rem;
+     font-weight: 700;
+     line-height: 1.1;
+     margin-bottom: 4px;
+   }
+   .hist-sum-label { font-size: 13px; color: #374151; font-weight: 500; margin-bottom: 10px; }
+   .hist-sum-bar   { height: 5px; background: #f0f0f0; border-radius: 3px; overflow: hidden; margin-bottom: 5px; }
+   .hist-sum-fill  { height: 100%; border-radius: 3px; transition: width .8s ease; }
+   .hist-sum-pct   { font-size: 11px; color: var(--text-muted); }
+   
+   /* ── Daftar kartu histori ── */
+   .hist-list { display: flex; flex-direction: column; gap: 12px; animation: up .5s .1s ease both; }
+   .hist-card {
+     display: grid;
+     grid-template-columns: 90px 1fr auto;
+     gap: 16px;
+     align-items: center;
+     padding: 1rem 1.25rem;
+     transition: transform .15s, box-shadow .15s;
+   }
+   .hist-card:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 5px 0 var(--shadow-3d), 0 8px 20px rgba(0,0,0,.09);
+   }
+   .hist-thumb-wrap {
+     width: 90px;
+     height: 72px;
+     border-radius: 9px;
+     overflow: hidden;
+     flex-shrink: 0;
+     background: var(--bg-light);
+     border: 1px solid var(--border-lt);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   .hist-thumb    { width: 100%; height: 100%; object-fit: cover; display: block; }
+   .hist-thumb-ph { font-size: 1.8rem; color: var(--text-muted); }
+   .hist-info     { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+   .hist-info-top {
+     display: flex;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 6px;
+   }
+   .hist-label      { font-size: 15px; font-weight: 600; color: var(--text-main); margin-right: 8px; }
+   .hist-conf       { font-size: 13px; font-weight: 600; color: var(--g); }
+   .hist-time-badge { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+   .hist-time-sep   { margin: 0 4px; }
+   
+   /* ── Progress bar confidence ── */
+   .hist-pb-wrap    { display: flex; align-items: center; gap: 8px; }
+   .hist-pb         { flex: 1; height: 5px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+   .hist-pf         { height: 100%; border-radius: 3px; width: 0; transition: width 1s .15s cubic-bezier(.4,0,.2,1); }
+   .hist-conf-label { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+   
+   /* ── Chip skor semua kelas ── */
+   .hist-probs      { display: flex; gap: 6px; flex-wrap: wrap; }
+   .hist-prob-chip {
+     font-size: 11px;
+     color: var(--text-sub);
+     background: var(--bg-light);
+     border: 1px solid var(--border-lt);
+     border-radius: 6px;
+     padding: 2px 9px;
+   }
+   .hist-prob-chip.active {
+     background: var(--gl);
+     border-color: var(--gb);
+     color: var(--gd);
+     font-weight: 600;
+   }
+   
+   /* ── Meta kolom kanan (ID + elapsed) ── */
+   .hist-meta {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     gap: 6px;
+     flex-shrink: 0;
+   }
+   .hist-id { font-size: 10px; color: var(--text-muted); font-weight: 600; letter-spacing: .5px; }
+   .hist-elapsed {
+     font-size: 11px;
+     color: var(--text-sub);
+     background: var(--bg-muted);
+     border: 1px solid var(--border-lt);
+     border-radius: 20px;
+     padding: 2px 8px;
+     white-space: nowrap;
+   }
+   
+   /* ── State kosong ── */
+   .hist-empty      { text-align: center; padding: 4rem 1rem; animation: up .5s ease both; }
+   .hist-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+   .hist-empty-title{ font-size: 16px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+   .hist-empty-sub  { font-size: 13px; color: var(--text-sub); max-width: 360px; margin: 0 auto; line-height: 1.6; }
+   
+   /* ── Responsive — History ── */
+   @media (max-width: 700px) {
+     .charts-row        { grid-template-columns: 1fr; }
+     .hist-summary-grid { grid-template-columns: 1fr; }
+     .hist-card         { grid-template-columns: 70px 1fr; }
+     .hist-meta         { display: none; }
+     .hist-thumb-wrap   { width: 70px; height: 56px; }
+     .hist-toolbar      { gap: 6px; }
+     .hist-export-btn   { margin-left: 0; }
+   }

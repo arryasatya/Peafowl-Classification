@@ -1,0 +1,1538 @@
+[
+  {
+    "id": "cbc67c57",
+    "timestamp": "2026-06-30 20:39:05",
+    "date": "30 Jun 2026",
+    "time": "20:39",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.254,
+    "image_file": "uploads/16a1d2046a.jpg"
+  },
+  {
+    "id": "7ed3aadb",
+    "timestamp": "2026-06-17 22:48:24",
+    "date": "17 Jun 2026",
+    "time": "22:48",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 1.417,
+    "image_file": "uploads/72754ed38d.jpg"
+  },
+  {
+    "id": "2b3f19a2",
+    "timestamp": "2026-06-17 20:16:52",
+    "date": "17 Jun 2026",
+    "time": "20:16",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 1.193,
+    "image_file": "uploads/87be63c449.jpg"
+  },
+  {
+    "id": "934f1a20",
+    "timestamp": "2026-06-17 17:12:48",
+    "date": "17 Jun 2026",
+    "time": "17:12",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.18,
+    "image_file": "uploads/481f696034.jpg"
+  },
+  {
+    "id": "9c5f1769",
+    "timestamp": "2026-06-17 16:25:43",
+    "date": "17 Jun 2026",
+    "time": "16:25",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.302,
+    "image_file": "uploads/943ddce901.jpg"
+  },
+  {
+    "id": "07e3f56b",
+    "timestamp": "2026-06-16 15:18:30",
+    "date": "16 Jun 2026",
+    "time": "15:18",
+    "label": "Biru",
+    "confidence": 98.81,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 98.81
+      },
+      {
+        "label": "Hijau",
+        "score": 1.19
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.305,
+    "image_file": "uploads/6cf0b7e377.jpg"
+  },
+  {
+    "id": "aaada109",
+    "timestamp": "2026-06-15 12:51:34",
+    "date": "15 Jun 2026",
+    "time": "12:51",
+    "label": "Biru",
+    "confidence": 76.32,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 76.32
+      },
+      {
+        "label": "Hijau",
+        "score": 23.61
+      },
+      {
+        "label": "Ungu",
+        "score": 0.06
+      }
+    ],
+    "elapsed": 0.542,
+    "image_file": "uploads/e5fbcec46f.jpg"
+  },
+  {
+    "id": "00bdda58",
+    "timestamp": "2026-06-15 12:51:18",
+    "date": "15 Jun 2026",
+    "time": "12:51",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.363,
+    "image_file": "uploads/75c20d66b6.jpg"
+  },
+  {
+    "id": "9a8bbc26",
+    "timestamp": "2026-06-15 12:26:24",
+    "date": "15 Jun 2026",
+    "time": "12:26",
+    "label": "Biru",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.99
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.591,
+    "image_file": "uploads/ef0d6253ff.jpg"
+  },
+  {
+    "id": "618d7147",
+    "timestamp": "2026-06-15 12:25:59",
+    "date": "15 Jun 2026",
+    "time": "12:25",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.622,
+    "image_file": "uploads/19da1650c0.jpg"
+  },
+  {
+    "id": "d3ad31fc",
+    "timestamp": "2026-06-15 12:25:15",
+    "date": "15 Jun 2026",
+    "time": "12:25",
+    "label": "Ungu",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.99
+      }
+    ],
+    "elapsed": 0.464,
+    "image_file": "uploads/5b81a7da96.jpg"
+  },
+  {
+    "id": "52d2b6b0",
+    "timestamp": "2026-06-15 12:24:55",
+    "date": "15 Jun 2026",
+    "time": "12:24",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 1.705,
+    "image_file": "uploads/1ecc776901.jpg"
+  },
+  {
+    "id": "cc91d17f",
+    "timestamp": "2026-06-15 11:18:53",
+    "date": "15 Jun 2026",
+    "time": "11:18",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.252,
+    "image_file": "uploads/394d9c84b1.jpg"
+  },
+  {
+    "id": "dbc951b1",
+    "timestamp": "2026-06-11 21:14:17",
+    "date": "11 Jun 2026",
+    "time": "21:14",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.802,
+    "image_file": "uploads/f7e47ba169.jpg"
+  },
+  {
+    "id": "193f0781",
+    "timestamp": "2026-06-11 21:11:22",
+    "date": "11 Jun 2026",
+    "time": "21:11",
+    "label": "Biru",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.99
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.584,
+    "image_file": "uploads/30779cecc6.jpg"
+  },
+  {
+    "id": "c3f11429",
+    "timestamp": "2026-06-11 21:09:25",
+    "date": "11 Jun 2026",
+    "time": "21:09",
+    "label": "Biru",
+    "confidence": 99.49,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.49
+      },
+      {
+        "label": "Hijau",
+        "score": 0.51
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.704,
+    "image_file": "uploads/66d980608d.jpg"
+  },
+  {
+    "id": "61ff023c",
+    "timestamp": "2026-06-11 21:08:33",
+    "date": "11 Jun 2026",
+    "time": "21:08",
+    "label": "Ungu",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 100.0
+      }
+    ],
+    "elapsed": 0.51,
+    "image_file": "uploads/30f20403ab.jpg"
+  },
+  {
+    "id": "b8877417",
+    "timestamp": "2026-06-11 21:08:06",
+    "date": "11 Jun 2026",
+    "time": "21:08",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.466,
+    "image_file": "uploads/636ff45eb7.jpg"
+  },
+  {
+    "id": "ed6ed480",
+    "timestamp": "2026-06-11 21:07:55",
+    "date": "11 Jun 2026",
+    "time": "21:07",
+    "label": "Ungu",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 100.0
+      }
+    ],
+    "elapsed": 0.585,
+    "image_file": "uploads/c1b4cd0281.jpg"
+  },
+  {
+    "id": "ee9a65cd",
+    "timestamp": "2026-06-11 21:07:32",
+    "date": "11 Jun 2026",
+    "time": "21:07",
+    "label": "Biru",
+    "confidence": 99.89,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.89
+      },
+      {
+        "label": "Hijau",
+        "score": 0.11
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.601,
+    "image_file": "uploads/e15ed33469.jpg"
+  },
+  {
+    "id": "a18eca5d",
+    "timestamp": "2026-06-11 21:06:26",
+    "date": "11 Jun 2026",
+    "time": "21:06",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.628,
+    "image_file": "uploads/50f83ccf8d.jpg"
+  },
+  {
+    "id": "5fe3584d",
+    "timestamp": "2026-06-11 21:05:26",
+    "date": "11 Jun 2026",
+    "time": "21:05",
+    "label": "Ungu",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 100.0
+      }
+    ],
+    "elapsed": 0.397,
+    "image_file": "uploads/6933fde70b.jpg"
+  },
+  {
+    "id": "adb7340f",
+    "timestamp": "2026-06-11 21:05:08",
+    "date": "11 Jun 2026",
+    "time": "21:05",
+    "label": "Biru",
+    "confidence": 83.61,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 83.61
+      },
+      {
+        "label": "Hijau",
+        "score": 16.38
+      },
+      {
+        "label": "Ungu",
+        "score": 0.01
+      }
+    ],
+    "elapsed": 0.417,
+    "image_file": "uploads/5a25aa8424.jpg"
+  },
+  {
+    "id": "7bf97b75",
+    "timestamp": "2026-06-11 21:04:45",
+    "date": "11 Jun 2026",
+    "time": "21:04",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.861,
+    "image_file": "uploads/a10283dd1d.jpg"
+  },
+  {
+    "id": "698c9f43",
+    "timestamp": "2026-06-11 21:04:07",
+    "date": "11 Jun 2026",
+    "time": "21:04",
+    "label": "Ungu",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 100.0
+      }
+    ],
+    "elapsed": 0.762,
+    "image_file": "uploads/f476dd0032.jpg"
+  },
+  {
+    "id": "d63e1aa3",
+    "timestamp": "2026-06-11 21:03:12",
+    "date": "11 Jun 2026",
+    "time": "21:03",
+    "label": "Ungu",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 100.0
+      }
+    ],
+    "elapsed": 1.435,
+    "image_file": "uploads/05f8a0d1ef.jpg"
+  },
+  {
+    "id": "41709b91",
+    "timestamp": "2026-06-11 20:27:21",
+    "date": "11 Jun 2026",
+    "time": "20:27",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.747,
+    "image_file": "uploads/b1fa4157cb.jpg"
+  },
+  {
+    "id": "7380b5d1",
+    "timestamp": "2026-06-11 20:16:48",
+    "date": "11 Jun 2026",
+    "time": "20:16",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.777,
+    "image_file": "uploads/bb385b3254.jpg"
+  },
+  {
+    "id": "28f398a6",
+    "timestamp": "2026-06-11 20:07:21",
+    "date": "11 Jun 2026",
+    "time": "20:07",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.31,
+    "image_file": "uploads/0c41920a7e.jpg"
+  },
+  {
+    "id": "26a7885f",
+    "timestamp": "2026-06-10 09:59:24",
+    "date": "10 Jun 2026",
+    "time": "09:59",
+    "label": "Biru",
+    "confidence": 99.75,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.75
+      },
+      {
+        "label": "Hijau",
+        "score": 0.25
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.231,
+    "image_file": "uploads/99ac382000.jpg"
+  },
+  {
+    "id": "dbd097a8",
+    "timestamp": "2026-06-10 09:04:39",
+    "date": "10 Jun 2026",
+    "time": "09:04",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.214,
+    "image_file": "uploads/b5c57ba040.jpg"
+  },
+  {
+    "id": "09d3a006",
+    "timestamp": "2026-05-28 13:39:47",
+    "date": "28 May 2026",
+    "time": "13:39",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 2.068,
+    "image_file": "uploads/0d42b82539.jpg"
+  },
+  {
+    "id": "531827e3",
+    "timestamp": "2026-05-26 22:02:32",
+    "date": "26 May 2026",
+    "time": "22:02",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.745,
+    "image_file": "uploads/81e7607470.jpg"
+  },
+  {
+    "id": "2dbac68c",
+    "timestamp": "2026-05-26 21:44:31",
+    "date": "26 May 2026",
+    "time": "21:44",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.314,
+    "image_file": "uploads/79adbc52ec.jpg"
+  },
+  {
+    "id": "b0bf7c7e",
+    "timestamp": "2026-05-25 20:55:25",
+    "date": "25 May 2026",
+    "time": "20:55",
+    "label": "Hijau",
+    "confidence": 100.0,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 100.0
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.16,
+    "image_file": "uploads/41800f509d.jpg"
+  },
+  {
+    "id": "b21c3f5d",
+    "timestamp": "2026-05-25 20:43:49",
+    "date": "25 May 2026",
+    "time": "20:43",
+    "label": "Hijau",
+    "confidence": 99.96,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.04
+      },
+      {
+        "label": "Hijau",
+        "score": 99.96
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.455,
+    "image_file": "uploads/6b8d7ac5be.jpg"
+  },
+  {
+    "id": "e9d5f199",
+    "timestamp": "2026-05-25 20:43:31",
+    "date": "25 May 2026",
+    "time": "20:43",
+    "label": "Biru",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.99
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 3.119,
+    "image_file": "uploads/8931d5a2cb.jpg"
+  },
+  {
+    "id": "609c71b3",
+    "timestamp": "2026-05-25 20:34:53",
+    "date": "25 May 2026",
+    "time": "20:34",
+    "label": "Biru",
+    "confidence": 97.31,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 97.31
+      },
+      {
+        "label": "Hijau",
+        "score": 2.66
+      },
+      {
+        "label": "Ungu",
+        "score": 0.03
+      }
+    ],
+    "elapsed": 2.838,
+    "image_file": "uploads/5bc9a56b4a.jpg"
+  },
+  {
+    "id": "9ad1b623",
+    "timestamp": "2026-05-09 18:35:34",
+    "date": "09 May 2026",
+    "time": "18:35",
+    "label": "Hijau",
+    "confidence": 99.69,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.31
+      },
+      {
+        "label": "Hijau",
+        "score": 99.69
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 1.785,
+    "image_file": "uploads/5428879563.jpg"
+  },
+  {
+    "id": "6fe3d2f9",
+    "timestamp": "2026-05-09 15:19:05",
+    "date": "09 May 2026",
+    "time": "15:19",
+    "label": "Hijau",
+    "confidence": 99.18,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.82
+      },
+      {
+        "label": "Hijau",
+        "score": 99.18
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.178,
+    "image_file": "uploads/7a095b0f90.jpg"
+  },
+  {
+    "id": "9dd392ad",
+    "timestamp": "2026-05-09 15:16:00",
+    "date": "09 May 2026",
+    "time": "15:16",
+    "label": "Ungu",
+    "confidence": 99.6,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.39
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.6
+      }
+    ],
+    "elapsed": 0.217,
+    "image_file": "uploads/3e3fc01419.jpg"
+  },
+  {
+    "id": "b4f18fde",
+    "timestamp": "2026-05-09 15:10:01",
+    "date": "09 May 2026",
+    "time": "15:10",
+    "label": "Ungu",
+    "confidence": 99.6,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.39
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.6
+      }
+    ],
+    "elapsed": 0.186,
+    "image_file": "uploads/c69819b524.jpg"
+  },
+  {
+    "id": "712177fa",
+    "timestamp": "2026-05-09 15:09:39",
+    "date": "09 May 2026",
+    "time": "15:09",
+    "label": "Ungu",
+    "confidence": 99.6,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.39
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.6
+      }
+    ],
+    "elapsed": 0.15,
+    "image_file": "uploads/02fcbe90df.jpg"
+  },
+  {
+    "id": "d334f6c0",
+    "timestamp": "2026-05-09 15:08:33",
+    "date": "09 May 2026",
+    "time": "15:08",
+    "label": "Ungu",
+    "confidence": 99.95,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.04
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.95
+      }
+    ],
+    "elapsed": 0.133,
+    "image_file": "uploads/3dbc8078b4.jpg"
+  },
+  {
+    "id": "be23fe89",
+    "timestamp": "2026-05-09 15:07:51",
+    "date": "09 May 2026",
+    "time": "15:07",
+    "label": "Hijau",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.01
+      },
+      {
+        "label": "Hijau",
+        "score": 99.99
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.185,
+    "image_file": "uploads/5eed4d1e53.jpg"
+  },
+  {
+    "id": "8ff10ec5",
+    "timestamp": "2026-05-09 15:06:28",
+    "date": "09 May 2026",
+    "time": "15:06",
+    "label": "Hijau",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.01
+      },
+      {
+        "label": "Hijau",
+        "score": 99.99
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.136,
+    "image_file": "uploads/d728d10c67.jpg"
+  },
+  {
+    "id": "20ecb4d5",
+    "timestamp": "2026-05-09 15:06:17",
+    "date": "09 May 2026",
+    "time": "15:06",
+    "label": "Biru",
+    "confidence": 97.85,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 97.85
+      },
+      {
+        "label": "Hijau",
+        "score": 2.06
+      },
+      {
+        "label": "Ungu",
+        "score": 0.08
+      }
+    ],
+    "elapsed": 0.133,
+    "image_file": "uploads/844372e552.jpg"
+  },
+  {
+    "id": "378b6ef0",
+    "timestamp": "2026-05-09 15:05:56",
+    "date": "09 May 2026",
+    "time": "15:05",
+    "label": "Ungu",
+    "confidence": 99.83,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.12
+      },
+      {
+        "label": "Hijau",
+        "score": 0.05
+      },
+      {
+        "label": "Ungu",
+        "score": 99.83
+      }
+    ],
+    "elapsed": 3.235,
+    "image_file": "uploads/bb31a08307.jpg"
+  },
+  {
+    "id": "ecaf0bb7",
+    "timestamp": "2026-05-09 14:37:17",
+    "date": "09 May 2026",
+    "time": "14:37",
+    "label": "Hijau",
+    "confidence": 99.52,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.47
+      },
+      {
+        "label": "Hijau",
+        "score": 99.52
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.215,
+    "image_file": "uploads/7a1124ec09.jpg"
+  },
+  {
+    "id": "92441e67",
+    "timestamp": "2026-05-09 14:27:09",
+    "date": "09 May 2026",
+    "time": "14:27",
+    "label": "Hijau",
+    "confidence": 99.52,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.47
+      },
+      {
+        "label": "Hijau",
+        "score": 99.52
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 2.86,
+    "image_file": "uploads/9e27ec2c5e.jpg"
+  },
+  {
+    "id": "441fbf9a",
+    "timestamp": "2026-05-09 14:14:28",
+    "date": "09 May 2026",
+    "time": "14:14",
+    "label": "Ungu",
+    "confidence": 99.83,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.12
+      },
+      {
+        "label": "Hijau",
+        "score": 0.05
+      },
+      {
+        "label": "Ungu",
+        "score": 99.83
+      }
+    ],
+    "elapsed": 0.126,
+    "image_file": "uploads/f63a8e68d1.jpg"
+  },
+  {
+    "id": "16edfd38",
+    "timestamp": "2026-05-09 14:14:08",
+    "date": "09 May 2026",
+    "time": "14:14",
+    "label": "Biru",
+    "confidence": 99.92,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 99.92
+      },
+      {
+        "label": "Hijau",
+        "score": 0.05
+      },
+      {
+        "label": "Ungu",
+        "score": 0.03
+      }
+    ],
+    "elapsed": 0.348,
+    "image_file": "uploads/c66b598142.jpg"
+  },
+  {
+    "id": "e657db8b",
+    "timestamp": "2026-05-08 19:15:02",
+    "date": "08 May 2026",
+    "time": "19:15",
+    "label": "Ungu",
+    "confidence": 99.83,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.16
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 99.83
+      }
+    ],
+    "elapsed": 0.193,
+    "image_file": "uploads/624b3820ea.jpg"
+  },
+  {
+    "id": "a148908e",
+    "timestamp": "2026-05-08 19:14:20",
+    "date": "08 May 2026",
+    "time": "19:14",
+    "label": "Ungu",
+    "confidence": 99.83,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.16
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 99.83
+      }
+    ],
+    "elapsed": 3.125,
+    "image_file": "uploads/0364790ac3.jpg"
+  },
+  {
+    "id": "dccd536b",
+    "timestamp": "2026-05-06 20:55:09",
+    "date": "06 May 2026",
+    "time": "20:55",
+    "label": "Ungu",
+    "confidence": 99.96,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.0
+      },
+      {
+        "label": "Hijau",
+        "score": 0.04
+      },
+      {
+        "label": "Ungu",
+        "score": 99.96
+      }
+    ],
+    "elapsed": 0.267,
+    "image_file": "uploads/50baab720e.jpg"
+  },
+  {
+    "id": "f43cef8c",
+    "timestamp": "2026-05-06 19:28:50",
+    "date": "06 May 2026",
+    "time": "19:28",
+    "label": "Ungu",
+    "confidence": 99.93,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.06
+      },
+      {
+        "label": "Hijau",
+        "score": 0.01
+      },
+      {
+        "label": "Ungu",
+        "score": 99.93
+      }
+    ],
+    "elapsed": 0.289,
+    "image_file": "uploads/f3c866d118.jpg"
+  },
+  {
+    "id": "4d6a022c",
+    "timestamp": "2026-05-06 19:20:08",
+    "date": "06 May 2026",
+    "time": "19:20",
+    "label": "Hijau",
+    "confidence": 99.86,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.14
+      },
+      {
+        "label": "Hijau",
+        "score": 99.86
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.302,
+    "image_file": "uploads/6ddd321067.jpg"
+  },
+  {
+    "id": "a0bc1cdd",
+    "timestamp": "2026-05-06 18:40:47",
+    "date": "06 May 2026",
+    "time": "18:40",
+    "label": "Hijau",
+    "confidence": 99.86,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.14
+      },
+      {
+        "label": "Hijau",
+        "score": 99.86
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.187,
+    "image_file": "uploads/c21a08afc9.jpg"
+  },
+  {
+    "id": "d97c870c",
+    "timestamp": "2026-05-06 18:33:43",
+    "date": "06 May 2026",
+    "time": "18:33",
+    "label": "Hijau",
+    "confidence": 99.86,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.14
+      },
+      {
+        "label": "Hijau",
+        "score": 99.86
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.132,
+    "image_file": "uploads/9ee3419fc6.jpg"
+  },
+  {
+    "id": "e6d9fcb4",
+    "timestamp": "2026-05-06 18:33:28",
+    "date": "06 May 2026",
+    "time": "18:33",
+    "label": "Hijau",
+    "confidence": 99.09,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.9
+      },
+      {
+        "label": "Hijau",
+        "score": 99.09
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.301,
+    "image_file": "uploads/2d160cee45.jpg"
+  },
+  {
+    "id": "9dbda067",
+    "timestamp": "2026-05-06 18:23:35",
+    "date": "06 May 2026",
+    "time": "18:23",
+    "label": "Hijau",
+    "confidence": 99.98,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.02
+      },
+      {
+        "label": "Hijau",
+        "score": 99.98
+      },
+      {
+        "label": "Ungu",
+        "score": 0.0
+      }
+    ],
+    "elapsed": 0.183,
+    "image_file": "uploads/61bc1fc2c9.jpg"
+  },
+  {
+    "id": "729b171f",
+    "timestamp": "2026-05-06 18:20:14",
+    "date": "06 May 2026",
+    "time": "18:20",
+    "label": "Biru",
+    "confidence": 52.67,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 52.67
+      },
+      {
+        "label": "Hijau",
+        "score": 47.33
+      },
+      {
+        "label": "Ungu",
+        "score": 0.01
+      }
+    ],
+    "elapsed": 0.12,
+    "image_file": "uploads/029df61d31.jpg"
+  },
+  {
+    "id": "811e923d",
+    "timestamp": "2026-05-06 18:19:51",
+    "date": "06 May 2026",
+    "time": "18:19",
+    "label": "Biru",
+    "confidence": 97.85,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 97.85
+      },
+      {
+        "label": "Hijau",
+        "score": 2.06
+      },
+      {
+        "label": "Ungu",
+        "score": 0.08
+      }
+    ],
+    "elapsed": 0.124,
+    "image_file": "uploads/f1b4bf77fe.jpg"
+  },
+  {
+    "id": "a0a39399",
+    "timestamp": "2026-05-06 18:19:37",
+    "date": "06 May 2026",
+    "time": "18:19",
+    "label": "Ungu",
+    "confidence": 99.99,
+    "probs": [
+      {
+        "label": "Biru",
+        "score": 0.01
+      },
+      {
+        "label": "Hijau",
+        "score": 0.0
+      },
+      {
+        "label": "Ungu",
+        "score": 99.99
+      }
+    ],
+    "elapsed": 0.194,
+    "image_file": "uploads/6bd6a753e3.jpg"
+  }
+]
